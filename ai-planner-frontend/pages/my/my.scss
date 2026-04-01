@@ -1,0 +1,152 @@
+/* ═══════════════════════════════════════════
+   MY / PROFILE — Dark Minimal
+   ═══════════════════════════════════════════ */
+
+$bg-page:        #0A0A0A;
+$bg-card:        #161618;
+$bg-elevated:    #222224;
+$text-primary:   #FFFFFF;
+$text-secondary: #888888;
+$text-tertiary:  #555558;
+$accent-lime:    #D9F02C;
+$accent-orange:  #FF6B35;
+$divider:        rgba(255,255,255,0.05);
+$stat-divider:   rgba(255,255,255,0.07);
+
+.page {
+  background-color: $bg-page;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.status-bar { height: 88rpx; }
+
+.content {
+  padding: 8rpx 40rpx calc(160rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+}
+
+/* Header */
+.avatar-section { display: flex; align-items: center; gap: 32rpx; }
+
+.avatar-wrap {
+  position: relative;
+  width: 128rpx;
+  height: 128rpx;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3rpx solid rgba(217,240,44,0.4);
+  overflow: hidden;
+}
+
+.user-info { display: flex; flex-direction: column; gap: 12rpx; flex: 1; }
+
+.user-name {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: $text-primary;
+  letter-spacing: 1rpx;
+}
+
+.user-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 8rpx 22rpx;
+  background: rgba(217,240,44,0.1);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(217,240,44,0.25);
+}
+
+.tag-text { font-size: 22rpx; font-weight: 600; color: $accent-lime; }
+.user-motto { font-size: 22rpx; color: $text-tertiary; }
+
+/* Stats */
+.stats-bar {
+  background: $bg-card;
+  border-radius: 36rpx;
+  padding: 36rpx 20rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.stat-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+  position: relative;
+}
+
+.stat-cell::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rpx;
+  height: 48rpx;
+  background: $stat-divider;
+}
+
+.stat-cell:last-child::after { display: none; }
+
+.stat-num { font-size: 42rpx; font-weight: 800; color: $text-primary; }
+.stat-lbl { font-size: 20rpx; font-weight: 500; color: $text-tertiary; }
+
+/* Section */
+.section { display: flex; flex-direction: column; gap: 24rpx; }
+.section-title { font-size: 34rpx; font-weight: 700; color: $text-primary; }
+
+/* Menu Card */
+.menu-card {
+  background: $bg-card;
+  border-radius: 36rpx;
+  padding: 0 32rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 0;
+}
+
+.menu-row-border { border-bottom: 1rpx solid $divider; }
+
+.menu-left { display: flex; align-items: center; gap: 24rpx; }
+
+.menu-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-icon { font-size: 34rpx; }
+.menu-label { font-size: 28rpx; font-weight: 500; color: $text-primary; }
+.menu-arrow { font-size: 40rpx; color: $text-tertiary; line-height: 1; font-weight: 300; }
+
+/* Logout */
+.logout-btn {
+  height: 96rpx;
+  background: rgba(255,59,59,0.08);
+  border-radius: 48rpx;
+  border: 1rpx solid rgba(255,59,59,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-text { font-size: 30rpx; font-weight: 600; color: #FF4D4D; letter-spacing: 1rpx; }
+
+.version-text { font-size: 22rpx; color: $text-tertiary; text-align: center; padding-bottom: 8rpx; }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxy.aiplanner.mapper.TOperationLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxy.aiplanner.entity.TOperationLog">
+            <id property="id" column="id" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+            <result property="isDeleted" column="is_deleted" />
+            <result property="userId" column="user_id" />
+            <result property="operationType" column="operation_type" />
+            <result property="requestMethod" column="request_method" />
+            <result property="requestPath" column="request_path" />
+            <result property="ipAddress" column="ip_address" />
+            <result property="userAgent" column="user_agent" />
+            <result property="operationDetail" column="operation_detail" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,create_time,update_time,is_deleted,user_id,operation_type,
+        request_method,request_path,ip_address,user_agent,operation_detail
+    </sql>
+</mapper>

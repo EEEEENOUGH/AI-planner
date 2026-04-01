@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxy.aiplanner.mapper.TUserExamArchiveMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxy.aiplanner.entity.TUserExamArchive">
+            <id property="id" column="id" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+            <result property="isDeleted" column="is_deleted" />
+            <result property="userId" column="user_id" />
+            <result property="archiveName" column="archive_name" />
+            <result property="targetInstitution" column="target_institution" />
+            <result property="targetMajor" column="target_major" />
+            <result property="prepStartDate" column="prep_start_date" />
+            <result property="dailyStudyMinutes" column="daily_study_minutes" />
+            <result property="undergradBase" column="undergrad_base" />
+            <result property="weakSubjectSummary" column="weak_subject_summary" />
+            <result property="strongSubjectSummary" column="strong_subject_summary" />
+            <result property="expectedExamYear" column="expected_exam_year" />
+            <result property="archiveStatus" column="archive_status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,create_time,update_time,is_deleted,user_id,archive_name,
+        target_institution,target_major,prep_start_date,daily_study_minutes,undergrad_base,
+        weak_subject_summary,strong_subject_summary,expected_exam_year,archive_status
+    </sql>
+</mapper>

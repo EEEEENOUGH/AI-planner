@@ -1,0 +1,106 @@
+================================================================
+ AI Planner 后端开发日志
+ 项目路径：d:\Java\Project\Graduation_Project\ai-planner-backed
+================================================================
+
+----------------------------------------------------------------
+[2026-03-27] 阶段一：备考档案模块 + 代码精简重构
+----------------------------------------------------------------
+
+【新增文件】
+1. controller/UserExamArchiveController.java
+   - GET  /api/v1/archive/me    查询当前用户备考档案（返回 ArchiveVO，含倒计时天数）
+   - POST /api/v1/archive/save  保存/更新档案（存在则 updateById，不存在则 save）
+   - 内置 ArchiveVO record 和 ArchiveSaveDTO record（含 @Valid 校验）
+   - 两个接口均加 @OperateLog 注解
+
+2. api/archive.js（前端）
+   - getMyArchive()    GET  /archive/me
+   - saveArchive(data) POST /archive/save
+
+3. pages/archive/archive.vue（前端）
+   - 顶部渐变横幅：实时倒计时天数 + 院校专业
+   - 表单：院校/专业/日期（必填）、科目、每日时长（步进器）、科目掌握情况、档案名
+   - onMounted 自动回显，按钮文案动态切换"创建/保存"
+
+【修改文件】
+4. constant/OperationTypeConstants.java - 新增 ARCHIVE_QUERY=9 / ARCHIVE_SAVE=10
+5. pages.json（前端） - 注册新路由 pages/archive/archive
+6. pages/my/my.vue（前端） - 新增备考档案入口菜单项
+
+----------------------------------------------------------------
+[2026-03-27] 阶段二：后端代码精简重构
+----------------------------------------------------------------
+
+1. 13 个实体类全部继承 BaseEntity，删除重复字段和注释死代码
+2. BaseEntity 补加 @Data，修正 @TableLogic 无参写法
+3. ChatRequest / ChatResponse / Message 改用 Lombok @Data
+4. AiChatBusinessServiceImpl 删除冗余的手动时间戳赋值
+5. TestController 删除（安全隐患）
+
+----------------------------------------------------------------
+[2026-03-27] 阶段三：AI 生成阶段规划模块
+----------------------------------------------------------------
+
+1. controller/StudyPlanController.java
+   - POST /api/v1/plan/generate / GET /api/v1/plan/current / PUT /api/v1/plan/stage/{stageId}
+2. api/plan.js（前端） - generatePlan / getCurrentPlan / updateStage
+3. pages/plan/plan.vue（前端，全量重写）- 渐变卡片、总体目标、4色阶段卡片
+4. OperationTypeConstants.java 新增 11/12/13
+
+----------------------------------------------------------------
+[2026-03-27] 阶段四：Service 层规范重构（薄 Controller）
+----------------------------------------------------------------
+
+1. TUserExamArchiveService + Impl - getActiveArchive / saveOrUpdate
+2. TStudyPlanTotalService + Impl - getActivePlan / disableAllPlans
+3. TStudyPlanStageService + Impl - getStagesByPlanId / updateByUser
+4. StudyPlanGenerateService（新建）+ Impl - buildPrompt/extractJson/parseAndSave/generateAndSave
+5. StudyPlanController 重构为薄 Controller（230行->152行）
+6. UserExamArchiveController 重构为薄 Controller
+【lint 检查：全部 8 个文件零错误】
+
+----------------------------------------------------------------
+[2026-03-27] 阶段五：每日任务管理 + 首页对接
+----------------------------------------------------------------
+
+【新增后端文件】
+1. service/TStudyPlanDayTaskService.java（扩展接口）
+   - getTasksByStageId(stageId)       查阶段所有任务（按日期/序号升序）
+   - getTodayTasks(userId)            查今日任务（活跃计划->阶段->task_date=today）
+   - createTask(stageId,userId,...)   新增任务（create_source=1，自动计算序号）
+   - updateTask(taskId,userId,...)    更新内容（modify_source=1）
+   - updateTaskStatus(taskId,...)     标记完成/跳过/重置，完成时记录 completionTime
+   - deleteTask(taskId,userId)        逻辑删除（含归属校验）
+
+2. service/TStudyCheckinService.java（扩展接口）
+   - getCheckin(userId,planId,date)         查打卡记录
+   - upsertCheckin(userId,planId,date,note) 打卡（自动统计完成数/率/时长）
+
+3. controller/DayTaskController.java（新建）
+   - GET    /api/v1/task/stage/{stageId}  查阶段任务
+   - GET    /api/v1/task/today            查今日任务
+   - POST   /api/v1/task                 新增任务
+   - PUT    /api/v1/task/{taskId}         更新任务内容
+   - PATCH  /api/v1/task/{taskId}/status  更新任务状态
+   - DELETE /api/v1/task/{taskId}         删除任务
+   - POST   /api/v1/task/checkin         今日打卡
+   内置 VO：TaskVO、CheckinVO；DTO：TaskCreateDTO、TaskUpdateDTO、TaskStatusDTO、CheckinDTO
+
+4. OperationTypeConstants.java 新增 TASK_QUERY=14~CHECKIN=19
+
+【修改前端文件】
+5. api/plan.js - 新增 getStageTaskList/getTodayTasks/createTask/updateTask
+                      updateTaskStatus/deleteTask/checkin
+
+6. pages/plan/stage-detail.vue
+   - loadDailyTasks 替换 mock -> 调用 getStageTaskList(stageId)
+   - toggleTask -> 调用 updateTaskStatus，异步失败 toast 提示
+
+7. pages/index/index.vue
+   - onShow 加载今日任务，markDone 调用 updateTaskStatus
+   - checkin 调用真实打卡接口，loading 状态防重复点击
+
+【lint 检查：全部文件零错误】
+
+================================================================

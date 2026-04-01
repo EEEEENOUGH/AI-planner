@@ -1,0 +1,99 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^u-(.*)":  "uview-plus/components/u-$1/u-$1.vue",
+      "^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
+      "^custom-tabbar$": "@/components/custom-tabbar/custom-tabbar.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/plan/plan",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/ai/ai",
+      "style": {
+        "navigationBarTitleText": "AI ADVISOR",
+        "navigationBarBackgroundColor": "#1C2235",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/archive/archive",
+      "style": {
+        "navigationBarTitleText": "EXAM FILE",
+        "navigationBarBackgroundColor": "#1C2235",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/knowledge/knowledge",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/progress/progress",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/timer/timer",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "AI考研规划",
+    "navigationBarBackgroundColor": "#0A0A0A",
+    "backgroundColor": "#0A0A0A"
+  },
+  "tabBar": {
+    "custom": true,
+    "backgroundColor": "transparent",
+    "borderStyle": "black",
+    "color": "#555558",
+    "selectedColor": "#D9F02C",
+    "height": "0px",
+    "list": [
+      { "pagePath": "pages/index/index" },
+      { "pagePath": "pages/plan/plan" },
+      { "pagePath": "pages/knowledge/knowledge" },
+      { "pagePath": "pages/progress/progress" },
+      { "pagePath": "pages/my/my" }
+    ]
+  },
+  "uniIdRouter": {}
+}

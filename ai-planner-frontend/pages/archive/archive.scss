@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════
+   ARCHIVE — Industrial Technical Light
+   ═══════════════════════════════════════════ */
+
+$navy:     #1C2235;
+$graphite: #4A5168;
+$muted:    #8C93A8;
+$border:   #D0D4E0;
+$border-lt:#E8EAF2;
+$panel:    #FFFFFF;
+$steel-bg: #F2F4F8;
+$amber:    #E8A020;
+$amber-lt: #FFF8E6;
+$amber-dk: #B87D10;
+$teal:     #00A896;
+$danger:   #D94040;
+
+.page {
+  min-height: 100vh;
+  background: $steel-bg;
+  padding: 0 20rpx 100rpx;
+  box-sizing: border-box;
+}
+
+/* ── Countdown Banner ── */
+.banner {
+  position: relative;
+  display: flex; align-items: center; gap: 20rpx;
+  background: $navy;
+  border-radius: 4rpx;
+  padding: 32rpx 28rpx;
+  margin: 20rpx 0 16rpx;
+  border-bottom: 4rpx solid $amber;
+  box-shadow: 4rpx 4rpx 0 rgba(232,160,32,0.25);
+  overflow: hidden;
+}
+/* grid texture */
+.banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(232,160,32,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(232,160,32,0.06) 1px, transparent 1px);
+  background-size: 40rpx 40rpx;
+}
+.banner-left {
+  display: flex; align-items: baseline; gap: 4rpx;
+  flex-shrink: 0; position: relative; z-index: 1;
+}
+.banner-num  {
+  font-size: 72rpx; font-weight: 900; color: $amber;
+  line-height: 1; font-family: 'Courier New', monospace;
+}
+.banner-unit { font-size: 24rpx; font-weight: 700; color: rgba(255,255,255,0.7); }
+.banner-right {
+  flex: 1; display: flex; flex-direction: column; gap: 6rpx;
+  min-width: 0; position: relative; z-index: 1;
+}
+.banner-label { font-size: 20rpx; color: rgba(255,255,255,0.55); letter-spacing: 2rpx; text-transform: uppercase; }
+.banner-info  {
+  font-size: 25rpx; font-weight: 700; color: #FFFFFF;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.banner-emoji { font-size: 42rpx; flex-shrink: 0; position: relative; z-index: 1; }
+
+/* ── Cards ── */
+.card {
+  background: $panel;
+  border-radius: 4rpx;
+  padding: 24rpx 20rpx 8rpx;
+  margin-bottom: 14rpx;
+  border: 1.5rpx solid $border;
+  border-top: 3rpx solid $navy;
+  box-shadow: 2rpx 2rpx 0 rgba(28,34,53,0.06);
+}
+.card-header {
+  display: flex; align-items: center; gap: 10rpx;
+  margin-bottom: 18rpx;
+  padding-bottom: 14rpx;
+  border-bottom: 1px solid $border-lt;
+}
+.card-dot   {
+  width: 8rpx; height: 26rpx;
+  border-radius: 0;
+  background: $navy; flex-shrink: 0;
+}
+.dot-amber { background: $amber; }
+.dot-green { background: $teal; }
+.card-title { font-size: 26rpx; font-weight: 800; color: $navy; letter-spacing: 1rpx; }
+
+/* ── Fields ── */
+.field {
+  display: flex; flex-direction: column;
+  gap: 7rpx; margin-bottom: 18rpx;
+}
+.field:last-child { margin-bottom: 12rpx; }
+.label-row { display: flex; align-items: center; gap: 4rpx; }
+.label {
+  font-size: 19rpx; font-weight: 700; color: $muted;
+  letter-spacing: 2rpx; text-transform: uppercase;
+}
+.req   { color: $danger; font-size: 19rpx; }
+
+.fi {
+  height: 84rpx;
+  padding: 0 18rpx;
+  font-size: 27rpx; color: $navy;
+  background: $steel-bg;
+  border: 1.5rpx solid $border;
+  border-radius: 4rpx;
+  box-sizing: border-box; width: 100%;
+}
+.ph   { color: #C0C5D5; }
+.hint {
+  font-size: 19rpx; color: $muted;
+  letter-spacing: 1rpx;
+}
+
+.duration-row   { display: flex; align-items: center; gap: 16rpx; padding: 8rpx 0; }
+.duration-label { font-size: 23rpx; color: $muted; }
+
+:deep(.u-textarea__textarea) { color: $navy !important; }
+
+/* ── Submit ── */
+.submit-btn {
+  margin-top: 6rpx;
+  height: 96rpx;
+  background: $navy;
+  border-radius: 4rpx;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 3rpx 3rpx 0 $amber;
+  position: relative; overflow: hidden;
+}
+.submit-btn::after {
+  content: '';
+  position: absolute; right: 28rpx; top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 10rpx 0 10rpx 16rpx;
+  border-color: transparent transparent transparent $amber;
+}
+.submit-btn.loading { opacity: 0.65; }
+.submit-text {
+  font-size: 28rpx; font-weight: 800; color: #FFFFFF;
+  letter-spacing: 3rpx; text-transform: uppercase;
+}

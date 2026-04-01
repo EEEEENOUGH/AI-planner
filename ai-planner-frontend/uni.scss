@@ -1,0 +1,92 @@
+/**
+ * uni.scss — Industrial Technical Light
+ * Style Guide: mobile-03-industrialtechnical_light
+ *
+ * Palette:
+ *   --steel-bg:     #F2F4F8   page background
+ *   --panel:        #FFFFFF   card / panel
+ *   --panel-alt:    #EAECF2   alternate panel
+ *   --border:       #D0D4E0   grid lines
+ *   --navy:         #1C2235   primary text
+ *   --graphite:     #4A5168   secondary text
+ *   --muted:        #8C93A8   muted / placeholder
+ *   --amber:        #E8A020   accent / warning / progress
+ *   --amber-lt:     #FFF3D6   amber tint
+ *   --teal:         #00A896   success / active
+ *   --teal-lt:      #D6F5F2   teal tint
+ *   --danger:       #D94040   error / delete
+ *   --danger-lt:    #FDEAEA   danger tint
+ *
+ * Typography:
+ *   Primary: system-ui / 'Helvetica Neue' — clean, technical
+ *   Mono:    'Courier New', monospace — data values, codes
+ */
+
+@import 'uview-plus/theme.scss';
+
+/* ── Semantic tokens ── */
+$steel-bg:    #F2F4F8;
+$panel:       #FFFFFF;
+$panel-alt:   #EAECF2;
+$border:      #D0D4E0;
+$border-lt:   #E8EAF2;
+
+$navy:        #1C2235;
+$graphite:    #4A5168;
+$muted:       #8C93A8;
+
+$amber:       #E8A020;
+$amber-lt:    #FFF8E6;
+$amber-dk:    #B87D10;
+
+$teal:        #00A896;
+$teal-lt:     #D6F5F2;
+$teal-dk:     #007A6E;
+
+$danger:      #D94040;
+$danger-lt:   #FDEAEA;
+
+/* ── uniapp overrides ── */
+$uni-color-primary:   $amber;
+$uni-color-success:   $teal;
+$uni-color-warning:   $amber;
+$uni-color-error:     $danger;
+
+$uni-text-color:              $navy;
+$uni-text-color-inverse:      #FFFFFF;
+$uni-text-color-grey:         $muted;
+$uni-text-color-placeholder:  $muted;
+$uni-text-color-disable:      #C0C5D5;
+
+$uni-bg-color:         $panel;
+$uni-bg-color-grey:    $steel-bg;
+$uni-bg-color-hover:   $panel-alt;
+$uni-bg-color-mask:    rgba(28, 34, 53, 0.5);
+
+$uni-border-color: $border;
+
+$uni-font-size-sm:   22rpx;
+$uni-font-size-base: 26rpx;
+$uni-font-size-lg:   30rpx;
+
+$uni-border-radius-sm:     4rpx;
+$uni-border-radius-base:   8rpx;
+$uni-border-radius-lg:     16rpx;
+$uni-border-radius-circle: 50%;
+
+$uni-spacing-row-sm:   8rpx;
+$uni-spacing-row-base: 16rpx;
+$uni-spacing-row-lg:   24rpx;
+
+$uni-spacing-col-sm:   6rpx;
+$uni-spacing-col-base: 12rpx;
+$uni-spacing-col-lg:   20rpx;
+
+$uni-opacity-disabled: 0.35;
+
+/* ── Page base ── */
+page {
+  background-color: $steel-bg;
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

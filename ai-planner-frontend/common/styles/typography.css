@@ -1,0 +1,155 @@
+/* ===== 全局排版规范 ===== */
+
+/* 通用文本样式 */
+view, text {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+/* 标题规范 */
+.h1, .heading-1 {
+  font-size: 52rpx;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 1rpx;
+}
+
+.h2, .heading-2 {
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.5rpx;
+}
+
+.h3, .heading-3 {
+  font-size: 34rpx;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.5rpx;
+}
+
+.h4, .heading-4 {
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.h5, .heading-5 {
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* 正文规范 */
+.body-lg, .text-lg {
+  font-size: 28rpx;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.5rpx;
+}
+
+.body-base, .text-base {
+  font-size: 26rpx;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.5rpx;
+}
+
+.body-sm, .text-sm {
+  font-size: 24rpx;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.25rpx;
+}
+
+.body-xs, .text-xs {
+  font-size: 22rpx;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.25rpx;
+}
+
+/* 标签和辅助文字 */
+.label, .caption {
+  font-size: 20rpx;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.25rpx;
+}
+
+.hint, .footnote {
+  font-size: 18rpx;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0rpx;
+}
+
+/* 数字规范（用于大数字显示） */
+.number-lg {
+  font-size: 60rpx;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.number-md {
+  font-size: 44rpx;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.number-sm {
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 段落间距 */
+.paragraph {
+  margin: 0;
+  padding: 0;
+}
+
+.paragraph + .paragraph {
+  margin-top: 16rpx;
+}
+
+/* 禁用文字缩放 */
+.no-scale {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 强制换行 */
+.break-word {
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 防止换行 */
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 多行省略 */
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.ellipsis-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

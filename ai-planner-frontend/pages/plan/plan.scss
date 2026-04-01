@@ -1,0 +1,704 @@
+// ============================================================
+// PLAN PAGE — Dark Minimalist Premium
+// ============================================================
+
+.page {
+  --bg-page:        #0A0A0A;
+  --bg-card:        #161618;
+  --bg-elevated:    #222224;
+  --text-primary:   #FFFFFF;
+  --text-secondary: #888888;
+  --text-tertiary:  #555558;
+  --accent-lime:    #D9F02C;
+  --accent-orange:  #FF6B35;
+  --font:           'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+
+  background-color: var(--bg-page);
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+.status-bar { height: 88rpx; }
+
+.content {
+  padding: 0 40rpx calc(160rpx + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+// ── Header ──────────────────────────────────────────────────
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0 0;
+  margin-bottom: 8rpx;
+
+  &__title {
+    font-size: 52rpx;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5rpx;
+    line-height: 1.15;
+  }
+}
+
+.ai-btn {
+  padding: 14rpx 28rpx;
+  background: var(--bg-card);
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.06);
+
+  &__text {
+    font-size: 24rpx;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+}
+
+// ── 分段控制器 ───────────────────────────────────────────────
+.segment-wrap { width: 100%; }
+
+.segment {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  padding: 8rpx;
+
+  &__item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64rpx;
+    border-radius: 16rpx;
+    overflow: hidden;
+
+    &--active {
+      background: var(--accent-lime);
+      .segment__label { color: #000; font-weight: 700; }
+    }
+  }
+
+  &__label {
+    font-size: 24rpx;
+    font-weight: 500;
+    color: #888888;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    padding: 0 4rpx;
+  }
+}
+
+// ── 通用卡片 ─────────────────────────────────────────────────
+.card {
+  background: var(--bg-card);
+  border-radius: 32rpx;
+  padding: 32rpx 28rpx;
+
+  &__top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16rpx;
+    margin-bottom: 28rpx;
+  }
+
+  &__name-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12rpx;
+  }
+
+  &__stage-name {
+    font-size: 36rpx;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.3rpx;
+  }
+
+  &__pct {
+    font-size: 56rpx;
+    font-weight: 800;
+    color: var(--accent-lime);
+    line-height: 1;
+    letter-spacing: -2rpx;
+    flex-shrink: 0;
+  }
+
+  &__pct-unit {
+    font-size: 28rpx;
+    font-weight: 700;
+    color: var(--accent-lime);
+  }
+
+  &__date-row {
+    display: flex;
+    align-items: center;
+    margin-top: 18rpx;
+  }
+
+  &__date {
+    flex: 1;
+    font-size: 22rpx;
+    color: var(--text-tertiary);
+    letter-spacing: 0.3rpx;
+  }
+
+  &__days {
+    font-size: 22rpx;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  // 折叠式标题行（阶段目标）
+  &__label--collapse-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__label--title {
+    font-size: 32rpx;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 0.5rpx;
+  }
+
+  &__collapse-icon {
+    font-size: 22rpx;
+    color: var(--text-tertiary);
+    margin-left: 16rpx;
+  }
+}
+
+// ── 进度条 ───────────────────────────────────────────────────
+.progress-track {
+  width: 100%;
+  height: 8rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 100rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-lime);
+  border-radius: 100rpx;
+  min-width: 8rpx;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ── 徽章（阶段类型 / 状态）────────────────────────────────────
+.badge-row {
+  display: flex;
+  gap: 10rpx;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 20rpx;
+  font-weight: 600;
+  padding: 5rpx 16rpx;
+  border-radius: 16rpx;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1rpx solid rgba(255, 255, 255, 0.06);
+
+  &--active {
+    background: rgba(217, 240, 44, 0.12);
+    color: var(--accent-lime);
+    border-color: rgba(217, 240, 44, 0.25);
+  }
+
+  &--done {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-tertiary);
+    border-color: transparent;
+  }
+
+  &--upcoming {
+    background: rgba(255, 107, 53, 0.12);
+    color: var(--accent-orange);
+    border-color: rgba(255, 107, 53, 0.25);
+  }
+}
+
+// ── 阶段目标文本 ─────────────────────────────────────────────
+.core-task-text {
+  display: block;
+  font-size: 27rpx;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  letter-spacing: 0.3rpx;
+  margin-top: 20rpx;
+}
+
+// ── 生成任务按钮 ─────────────────────────────────────────────
+.gen-btn {
+  padding: 8rpx 20rpx;
+  border-radius: 16rpx;
+  background: var(--bg-elevated);
+  border: 1rpx solid rgba(255, 255, 255, 0.06);
+
+  &__text {
+    font-size: 20rpx;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+}
+
+// ── 加载 ────────────────────────────────────────────────────
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0;
+  gap: 16rpx;
+}
+
+.loading-text {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+}
+
+// ── 任务条目 ─────────────────────────────────────────────────
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.04);
+
+  &:last-child { border-bottom: none; }
+  &--done { opacity: 0.45; }
+
+  &__check {
+    flex-shrink: 0;
+    width: 42rpx;
+    height: 42rpx;
+    border-radius: 50%;
+    border: 2rpx solid rgba(255, 255, 255, 0.12);
+    background: var(--bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--checked {
+      background: var(--accent-lime);
+      border-color: var(--accent-lime);
+    }
+  }
+
+  &__tick {
+    font-size: 22rpx;
+    font-weight: 900;
+    color: #000000;
+    line-height: 1;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6rpx;
+  }
+
+  &__title {
+    font-size: 27rpx;
+    font-weight: 600;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &--done {
+      text-decoration: line-through;
+      color: var(--text-tertiary);
+    }
+  }
+
+  &__detail {
+    font-size: 21rpx;
+    color: var(--text-secondary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// ── 任务标签 ─────────────────────────────────────────────────
+.task-tag {
+  flex-shrink: 0;
+  padding: 5rpx 14rpx;
+  border-radius: 10rpx;
+
+  &--todo {
+    background: var(--bg-elevated);
+    border: 1rpx solid rgba(255, 255, 255, 0.06);
+    .task-tag__text { color: var(--text-tertiary); }
+  }
+
+  &--done {
+    background: rgba(217, 240, 44, 0.12);
+    border: 1rpx solid rgba(217, 240, 44, 0.25);
+    .task-tag__text { color: var(--accent-lime); }
+  }
+
+  &__text {
+    font-size: 18rpx;
+    font-weight: 700;
+  }
+}
+
+// ── 空任务状态 ───────────────────────────────────────────────
+.empty-tasks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56rpx 0;
+
+  &__text {
+    font-size: 25rpx;
+    color: var(--text-tertiary);
+    letter-spacing: 0.5rpx;
+  }
+}
+
+// ── 本周计划大卡片 ────────────────────────────────────────────
+.week-plan__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.week-plan__header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.week-plan__title {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.5rpx;
+}
+
+.week-plan__stat {
+  font-size: 20rpx;
+  color: var(--text-tertiary);
+}
+
+.week-plan__header-right {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.week-plan__collapse-icon {
+  font-size: 22rpx;
+  color: var(--text-tertiary);
+}
+
+.week-plan__days {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-top: 24rpx;
+}
+
+// ── 每天子卡片 ────────────────────────────────────────────────
+.day-card {
+  background: var(--bg-elevated);
+  border-radius: 24rpx;
+  padding: 24rpx 20rpx;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 10rpx;
+  }
+
+  &__title {
+    font-size: 28rpx;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  &__date-sub {
+    font-size: 20rpx;
+    color: var(--text-tertiary);
+  }
+
+  &__header-right {
+    display: flex;
+    align-items: center;
+    gap: 14rpx;
+  }
+
+  &__collapse-icon {
+    font-size: 20rpx;
+    color: var(--text-tertiary);
+  }
+
+  &__tasks {
+    margin-top: 16rpx;
+    padding-top: 16rpx;
+    border-top: 1rpx solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+// ── 日期徽章 ─────────────────────────────────────────────────
+.day-badge {
+  padding: 6rpx 18rpx;
+  border-radius: 16rpx;
+
+  &--done {
+    background: rgba(217, 240, 44, 0.12);
+    border: 1rpx solid rgba(217, 240, 44, 0.25);
+    .day-badge__text { color: var(--accent-lime); }
+  }
+
+  &--pending {
+    background: rgba(255, 107, 53, 0.12);
+    border: 1rpx solid rgba(255, 107, 53, 0.25);
+    .day-badge__text { color: var(--accent-orange); }
+  }
+
+  &__text {
+    font-size: 20rpx;
+    font-weight: 700;
+  }
+}
+
+// ── 无计划时：本周计划区 ─────────────────────────────────────
+.section {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20rpx;
+    padding: 0 4rpx;
+  }
+
+  &__title {
+    font-size: 34rpx;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  &__week {
+    font-size: 22rpx;
+    color: var(--text-tertiary);
+  }
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.day-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rpx;
+    margin-bottom: 4rpx;
+  }
+
+  &__title {
+    font-size: 27rpx;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  padding: 26rpx 28rpx;
+  gap: 22rpx;
+
+  &__time-col {
+    width: 80rpx;
+    flex-shrink: 0;
+  }
+
+  &__time {
+    font-size: 23rpx;
+    font-weight: 700;
+    color: var(--text-tertiary);
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 7rpx;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 27rpx;
+    font-weight: 600;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__duration {
+    font-size: 21rpx;
+    color: var(--text-tertiary);
+  }
+
+  &__check {
+    flex-shrink: 0;
+    width: 44rpx;
+    height: 44rpx;
+    border-radius: 50%;
+    background: var(--accent-lime);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--checked { background: var(--bg-elevated); }
+  }
+
+  &__tick {
+    font-size: 22rpx;
+    color: #000000;
+    font-weight: 900;
+  }
+}
+
+// ── 无计划空状态 ─────────────────────────────────────────────
+.empty-wrap { padding: 32rpx 0 16rpx; }
+
+.empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  padding: 64rpx 32rpx;
+  background: var(--bg-card);
+  border-radius: 36rpx;
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 1rpx;
+  }
+
+  &__desc {
+    font-size: 24rpx;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.7;
+    padding: 0 8rpx;
+  }
+}
+
+// ── 阶段详情容器 ─────────────────────────────────────────────
+.stage-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+// ── 自定义确认弹窗 ────────────────────────────────────────────
+.modal-mask {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  width: 560rpx;
+  background: #1E1E20;
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  padding: 48rpx 40rpx 36rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rpx;
+
+  &__title {
+    font-size: 34rpx;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: 0.5rpx;
+    text-align: center;
+  }
+
+  &__desc {
+    font-size: 26rpx;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.7;
+    padding: 0 8rpx;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 20rpx;
+    margin-top: 12rpx;
+    width: 100%;
+  }
+
+  &__btn {
+    flex: 1;
+    height: 88rpx;
+    border-radius: 22rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--cancel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1rpx solid rgba(255, 255, 255, 0.08);
+    }
+
+    &--confirm { background: var(--accent-lime); }
+  }
+
+  &__btn-text {
+    font-size: 28rpx;
+    font-weight: 700;
+    color: var(--text-secondary);
+
+    &--confirm { color: #000000; }
+  }
+}
+ 

@@ -1,0 +1,34 @@
+### 1. 测试注册接口
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "loginName": "zxy",
+  "password": "123456",
+  "nickname": "测试"
+}
+
+### 2. 测试登录接口 (注册成功后，运行这个)
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "loginName": "zxy",
+  "password": "123456"
+}
+
+### 3. 测试未携带 Token 访问受保护接口 (期望返回 401 报错)
+GET http://localhost:8080/api/v1/user/1
+
+### 4. 测试携带 Token 访问受保护接口 (把下面 Authorization 里的 xxx 替换成你登录成功后获取到的 token)
+GET http://localhost:8080/api/v1/user/1
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyMDM2ODQ5NTE3MjM1NjYyODUwIiwidXNlcklkIjoyMDM2ODQ5NTE3MjM1NjYyODUwLCJsb2dpbk5hbWUiOiJ0ZXN0dXNlciIsImlhdCI6MTc3NDQ1Nzc3NCwiZXhwIjoxNzc1MDYyNTc0fQ.WTJ-vHU_Ka5x17qEeQ4yirbkh8V9lkkiA9I3zdFKXHOSF54anjr9NzI4tTuMhV15
+
+### 5. 测试查询 AI 聊天
+GET http://localhost:8080/api/v1/ai/chat
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyMDM3MDM0MzA4NjMxMzA2MjQxIiwidXNlcklkIjoyMDM3MDM0MzA4NjMxMzA2MjQxLCJsb2dpbk5hbWUiOiJ6eHkiLCJpYXQiOjE3NzQ1Mjc2NzYsImV4cCI6MTc3NTEzMjQ3Nn0.WOgX8ECUDTrmDA3-SOAuaMf147lqJ3hHDAW69IyOjOh1qeg4dVQIkojj1r2WeeKZ
+
+### 查询 AI 历史记录
+GET http://localhost:8080/api/v1/ai/history?pageNum=1&pageSize=10
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIyMDM3MDM0MzA4NjMxMzA2MjQxIiwidXNlcklkIjoyMDM3MDM0MzA4NjMxMzA2MjQxLCJsb2dpbk5hbWUiOiJ6eHkiLCJpYXQiOjE3NzQ1Mjc0NjcsImV4cCI6MTc3NTEzMjI2N30.p0eCTYGhxzoZ0RnC_7DjEF6aF8MOB8qMpukW19ud4e3CE-YpwuFIy07o287hGEHY
+    "token": ""

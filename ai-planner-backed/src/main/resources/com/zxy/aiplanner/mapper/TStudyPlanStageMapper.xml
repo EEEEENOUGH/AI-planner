@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxy.aiplanner.mapper.TStudyPlanStageMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxy.aiplanner.entity.TStudyPlanStage">
+            <id property="id" column="id" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+            <result property="isDeleted" column="is_deleted" />
+            <result property="totalPlanId" column="total_plan_id" />
+            <result property="stageType" column="stage_type" />
+            <result property="stageName" column="stage_name" />
+            <result property="stageStartDate" column="stage_start_date" />
+            <result property="stageEndDate" column="stage_end_date" />
+            <result property="stagePlannedDays" column="stage_planned_days" />
+            <result property="stageCoreTask" column="stage_core_task" />
+            <result property="createSource" column="create_source" />
+            <result property="modifySource" column="modify_source" />
+            <result property="stageStatus" column="stage_status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,create_time,update_time,is_deleted,total_plan_id,stage_type,
+        stage_name,stage_start_date,stage_end_date,stage_planned_days,stage_core_task,
+        create_source,modify_source,stage_status
+    </sql>
+</mapper>

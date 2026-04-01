@@ -1,0 +1,372 @@
+/* ═══════════════════════════════════════════
+   TIMER PAGE — 纯黑暗色 · 荧光点缀
+   参考 index / progress 视觉风格
+   ═══════════════════════════════════════════ */
+
+// ── 色彩规范 (与首页/进度页保持一致)
+$bg:           #0A0A0A;          // 纯黑背景，与首页一致
+$bg-card:      #161618;          // 卡片底色，与首页一致
+$bg-deep:      #222224;          // 更深的次级底色
+$lime:         #D9F02C;          // 荧光黄绿主强调，与首页一致
+$lime-dim:     rgba(217, 240, 44, 0.08);
+$lime-glow:    rgba(217, 240, 44, 0.18);
+$orange:       #FF6B35;          // 橙色辅助（进度页 dot-normal）
+$white:        #FFFFFF;
+$text-primary: #FFFFFF;
+$text-sub:     #888888;          // 与首页 text-secondary 一致
+$text-dim:     #555558;          // 与进度页 stat-label 一致
+$border:       rgba(255, 255, 255, 0.06);
+
+.timer-page {
+  min-height: 100vh;
+  background: $bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, sans-serif;
+}
+
+/* ══ 氛围光晕 ══ */
+.ambient-glows {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+.glow-purple {
+  width: 500rpx;
+  height: 500rpx;
+  background: rgba(217, 240, 44, 0.12);
+  top: -60rpx;
+  left: -100rpx;
+}
+
+.glow-lime {
+  width: 600rpx;
+  height: 600rpx;
+  background: rgba(255, 107, 53, 0.08);
+  bottom: 150rpx;
+  right: -200rpx;
+}
+
+/* ══ 顶部栏 ══ */
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 56rpx 32rpx 16rpx;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.back-btn {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-card;
+  border: 1rpx solid $border;
+  border-radius: 20rpx;
+  transition: opacity 0.2s;
+}
+.back-btn:active { opacity: 0.7; }
+
+.back-icon {
+  font-size: 44rpx;
+  color: $text-sub;
+  line-height: 1;
+  margin-top: -4rpx;
+}
+
+.top-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: $text-sub;
+  letter-spacing: 2rpx;
+}
+
+.top-placeholder { width: 64rpx; }
+
+/* ══ 任务信息 (无框悬浮式) ══ */
+.task-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 40rpx;
+  padding: 0 60rpx 32rpx;
+  position: relative;
+  z-index: 2;
+
+  // 顶部荧光细线，体现悬浮感
+  &::before {
+    content: '';
+    display: block;
+    width: 48rpx;
+    height: 2rpx;
+    background: linear-gradient(90deg, transparent, $lime, transparent);
+    margin-bottom: 20rpx;
+    opacity: 0.7;
+  }
+}
+
+.task-name {
+  font-size: 42rpx;
+  font-weight: 700;
+  color: $text-primary;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 1rpx;
+}
+
+.task-duration {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 22rpx;
+  color: $text-dim;
+  letter-spacing: 1rpx;
+}
+
+.dot-purple {
+  width: 10rpx;
+  height: 10rpx;
+  background: $lime;
+  border-radius: 50%;
+  box-shadow: 0 0 6rpx $lime;
+}
+
+/* ══ 环形计时器 ══ */
+.ring-wrap {
+  position: relative;
+  width: 560rpx;
+  height: 560rpx;
+  margin-top: 56rpx;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.progress-arc {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 10rpx rgba(217, 240, 44, 0.35));
+}
+
+.ring-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.time-label {
+  font-size: 96rpx;
+  font-weight: 800;
+  color: $white;
+  letter-spacing: 2rpx;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  text-shadow: 0 2rpx 12rpx rgba(0,0,0,0.8);
+}
+
+.time-sub {
+  font-size: 24rpx;
+  color: $text-dim;
+  letter-spacing: 2rpx;
+  font-weight: 500;
+}
+
+.done-icon-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  background: $lime;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8rpx;
+  box-shadow: 0 8rpx 24rpx rgba(217, 240, 44, 0.3);
+}
+
+.done-icon {
+  color: #000;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.done-label {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: $lime;
+  text-shadow: none;
+  letter-spacing: -1rpx;
+}
+
+/* ══ 操作按钮 ══ */
+.action-area {
+  margin-top: auto;
+  margin-bottom: 80rpx;
+  padding: 0 60rpx;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+// 默认：荧光黄绿主按钮（与首页 form-btn-save 一致）
+.main-btn {
+  width: 100%;
+  padding: 36rpx 0;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $lime;
+  box-shadow: 0 12rpx 36rpx rgba(217, 240, 44, 0.22);
+  transition: all 0.2s;
+}
+
+.main-btn:active {
+  transform: scale(0.97);
+  opacity: 0.88;
+}
+
+// 暂停态：暗底 + 极淡边框
+.btn-pause {
+  background: $bg-card;
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+}
+
+.btn-pause .main-btn-text {
+  color: $text-sub;
+}
+
+.main-btn-text {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #000000;     // 黑字在荧光底上，与首页 btn-text 一致
+  letter-spacing: 2rpx;
+}
+
+// 完成态：橙色按钮，与进度页 dot-normal / bg-normal 一致
+.btn-finish {
+  background: $orange;
+  box-shadow: 0 12rpx 32rpx rgba(255, 107, 53, 0.28);
+}
+.btn-finish .main-btn-text {
+  color: #FFFFFF;
+}
+
+/* ══ 退出确认弹窗 (参考首页 modal-panel 风格) ══ */
+.modal-mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.exit-modal {
+  width: 100%;
+  max-width: 600rpx;
+  background: $bg-card;     // #161618，与首页 modal-panel 一致
+  border-radius: 48rpx;
+  border: 1rpx solid $border;
+  padding: 52rpx 40rpx 44rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 24rpx 64rpx rgba(0, 0, 0, 0.5);
+}
+
+.exit-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: 1rpx;
+  margin-bottom: 16rpx;
+}
+
+.exit-desc {
+  font-size: 26rpx;
+  color: $text-sub;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 44rpx;
+  letter-spacing: 0.5rpx;
+}
+
+.exit-btns {
+  display: flex;
+  gap: 16rpx;
+  width: 100%;
+}
+
+.exit-btn {
+  flex: 1;
+  padding: 28rpx 0;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.exit-btn:active { transform: scale(0.95); opacity: 0.85; }
+
+// 取消：与首页 form-btn-cancel 完全一致
+.exit-btn-cancel {
+  background: transparent;
+  border: 1rpx solid rgba(255, 255, 255, 0.12);
+}
+
+.exit-btn-cancel .exit-btn-text {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: $text-sub;
+  letter-spacing: 1rpx;
+}
+
+// 确认：与首页 form-btn-save 完全一致（荧光黄绿，黑字）
+.exit-btn-confirm {
+  flex: 1.6;
+  background: $lime;
+  box-shadow: 0 8rpx 32rpx rgba(217, 240, 44, 0.25);
+}
+
+.exit-btn-confirm .exit-btn-text {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: 1rpx;
+}

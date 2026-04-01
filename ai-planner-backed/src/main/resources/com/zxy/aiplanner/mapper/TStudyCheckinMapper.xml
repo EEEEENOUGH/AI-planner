@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxy.aiplanner.mapper.TStudyCheckinMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxy.aiplanner.entity.TStudyCheckin">
+            <id property="id" column="id" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+            <result property="isDeleted" column="is_deleted" />
+            <result property="userId" column="user_id" />
+            <result property="totalPlanId" column="total_plan_id" />
+            <result property="checkinDate" column="checkin_date" />
+            <result property="checkinStatus" column="checkin_status" />
+            <result property="actualDurationMinutes" column="actual_duration_minutes" />
+            <result property="finishedTaskCount" column="finished_task_count" />
+            <result property="totalTaskCount" column="total_task_count" />
+            <result property="taskCompletionRate" column="task_completion_rate" />
+            <result property="remindSentStatus" column="remind_sent_status" />
+            <result property="checkinNote" column="checkin_note" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,create_time,update_time,is_deleted,user_id,total_plan_id,
+        checkin_date,checkin_status,actual_duration_minutes,finished_task_count,total_task_count,
+        task_completion_rate,remind_sent_status,checkin_note
+    </sql>
+</mapper>

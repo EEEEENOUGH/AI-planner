@@ -1,0 +1,77 @@
+/* ===== 暗色主题（默认） ===== */
+:root,
+.theme-dark {
+  --bg-page: #0A0A0A;
+  --bg-card: #161618;
+  --bg-elevated: #222224;
+  --text-primary: #FFFFFF;
+  --text-secondary: #888888;
+  --text-tertiary: #555558;
+  --text-muted: #333336;
+  --accent-lime: #D9F02C;
+  --accent-orange: #FF6B35;
+  --accent-purple: #7C3AED;
+  --accent-blue: #3B82F6;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-muted: rgba(255, 255, 255, 0.12);
+  --divider: rgba(255, 255, 255, 0.05);
+  --font: 'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ===== 亮色主题 ===== */
+.theme-light {
+  --bg-page: #F5F5F0;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #EDEDEA;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-tertiary: #999999;
+  --text-muted: #BBBBBB;
+  --accent-lime: #7DAF00;
+  --accent-orange: #E85D2A;
+  --accent-purple: #6D28D9;
+  --accent-blue: #2563EB;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-muted: rgba(0, 0, 0, 0.12);
+  --divider: rgba(0, 0, 0, 0.06);
+  --font: 'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 通用基础样式 */
+body, view, text, input, button {
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  background-color: var(--bg-page);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: 36rpx;
+  padding: 36rpx;
+}
+
+.text-primary  {
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.text-tertiary  {
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+.text-lime     { color: var(--accent-lime); }
+.text-orange   { color: var(--accent-orange); }

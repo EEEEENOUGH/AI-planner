@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxy.aiplanner.mapper.TStudyPlanDayTaskMapper">
+
+    <resultMap id="BaseResultMap" type="com.zxy.aiplanner.entity.TStudyPlanDayTask">
+            <id property="id" column="id" />
+            <result property="createTime" column="create_time" />
+            <result property="updateTime" column="update_time" />
+            <result property="isDeleted" column="is_deleted" />
+            <result property="stageId" column="stage_id" />
+            <result property="taskDate" column="task_date" />
+            <result property="taskSequence" column="task_sequence" />
+            <result property="durationMinutes" column="duration_minutes" />
+            <result property="taskCoreGoal" column="task_core_goal" />
+            <result property="taskDetail" column="task_detail" />
+            <result property="taskStatus" column="task_status" />
+            <result property="actualDurationMinutes" column="actual_duration_minutes" />
+            <result property="completionTime" column="completion_time" />
+            <result property="createSource" column="create_source" />
+            <result property="modifySource" column="modify_source" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,create_time,update_time,is_deleted,stage_id,task_date,
+        task_sequence,duration_minutes,task_core_goal,task_detail,task_status,
+        actual_duration_minutes,completion_time,create_source,modify_source
+    </sql>
+</mapper>

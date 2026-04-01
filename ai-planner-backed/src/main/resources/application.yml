@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ai-planner-backed
+  datasource:
+    # TODO: 按你的实际数据库信息修改
+    url: jdbc:mysql://localhost:3306/gp?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  ai:
+    deepseek:
+      api-key: ${app.deepseek.api-key}
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: 123456
+
+app:
+  deepseek:
+    api-key: ${DEEPSEEK_API_KEY:sk-4faa2b97d3c94e0fa260602ddafd2f7e}
+    # 可配置为 https://api.deepseek.com/v3/chat/completions（OpenAI兼容）
+    base-url: https://api.deepseek.com/v1/chat/completions
+    model: deepseek-chat
+    connect-timeout-ms: 5000
+    read-timeout-ms: 60000
+    max-tokens: 2048
+    temperature: 0.7
+    system-prompt: 你是一个专业、耐心、结构化的考研复习规划师。请结合用户输入，给出可执行的学习建议。
+
+mybatis-plus:
+  # 开启驼峰命名映射
+  configuration:
+    map-underscore-to-camel-case: true
+    # 开发阶段可开启 SQL 打印（生产建议关闭）
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  # XML mapper 路径（如果你后续使用 XML）
+  mapper-locations: classpath:/com/zxy/aiplanner/mapper/**/*.xml
+  # 可选：实体别名包
+  type-aliases-package: com.zxy.aiplanner.entity
+
+  # 逻辑删除配置
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: is_deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+jwt:
+  # 至少 32 字符（256-bit）用于 HS256，建议自行更换为更随机的值
+  secret: "please_change_this_to_a_random_32+_chars_secret_key"
+  # 过期时间（毫秒），默认 7 天
+  expire-ms: 604800000
+
